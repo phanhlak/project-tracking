@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: #f6f2ea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.logo {
+  font-size: 36px;
+  color: #0c1e4a;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  font-weight: bold;
+  position: relative;
+}
+
+.tagline {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #0c1e4a;
+  text-align: center;
+  max-width: 600px;
+}
+
+.login-box {
+  margin-top: 50px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-box label {
+  font-size: 12px;
+  color: #0c1e4a;
+  margin-bottom: 4px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background: #d9d7d2;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.password-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot {
+  font-size: 11px;
+  color: #0d5eff;
+  text-decoration: none;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #0c1e4a;
+  margin-bottom: 20px;
+}
+
+.login-btn {
+  height: 38px;
+  border: none;
+  border-radius: 6px;
+  background: #0c1e4a;
+  color: white;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #142d6b;
+}
+
+.signup-text {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #0c1e4a;
+}
+
+.signup-text a {
+  color: #0d5eff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer-logo {
+  margin-top: 30px;
+  font-size: 24px;
+}
