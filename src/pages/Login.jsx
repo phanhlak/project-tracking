@@ -1,42 +1,109 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/login.css";
 
-export default function Login() {
-  return (
-    <div className="login-page">
-      <h1 className="logo">
-        PROJECT <span>TRACK</span>ING SYSTEM
-      </h1>
+function Login() {
+  const navigate = useNavigate();
 
-      <p className="tagline">
-        “ The project tracking system will be a centralized system that
-        collects project information. ”
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+    remember: false,
+  });
+
+  const [error, setError] = useState("");
+
+  // เปลี่ยนค่า input
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm({
+      ...form,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  // กด Login
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // ดึง user จาก localStorage (ที่ signup เก็บไว้)
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!savedUser) {
+      setError("ยังไม่มีบัญชีผู้ใช้ กรุณาสมัครสมาชิก");
+      return;
+    }
+
+    if (
+      form.username === savedUser.username &&
+      form.password === savedUser.password
+    ) {
+      // login สำเร็จ
+      if (form.remember) {
+        localStorage.setItem("isLogin", "true");
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(savedUser));
+      navigate("/dashboard");
+    } else {
+      setError("Username หรือ Password ไม่ถูกต้อง");
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h1 className="title">PROJECT TRACKING SYSTEM</h1>
+      <p className="subtitle">
+        The project tracking system will be a centralized system that collects
+        project information.
       </p>
 
-      <div className="login-box">
+      <form className="login-form" onSubmit={handleSubmit}>
         <label>user</label>
-        <input type="text" />
+        <input
+          type="text"
+          name="username"
+          value={form.username}
+          onChange={handleChange}
+          required
+        />
 
-        <div className="password-row">
-          <label>password</label>
-          <a href="#" className="forgot">forgot password ?</a>
+        <label>
+          password
+          <span className="forgot">forgot password ?</span>
+        </label>
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
+
+        <div className="options">
+          <label className="remember">
+            <input
+              type="checkbox"
+              name="remember"
+              checked={form.remember}
+              onChange={handleChange}
+            />
+            remember me
+          </label>
         </div>
-        <input type="password" />
 
-        <div className="remember-container">
-  <input type="checkbox" id="remember" />
-  <label htmlFor="remember">remember me</label>
-</div>
+        {error && <p className="error">{error}</p>}
 
-
-        <button className="login-btn">Login</button>
-      </div>
+        <button type="submit" className="login-btn">
+          Login
+        </button>
+      </form>
 
       <p className="signup-text">
         Don’t have an account ? <Link to="/signup">Sign up</Link>
       </p>
-
-      <div className="footer-logo">🏫</div>
     </div>
   );
 }
+
+export default Login;

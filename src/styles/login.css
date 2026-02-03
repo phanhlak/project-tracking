@@ -3,111 +3,126 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.login-page {
-  min-height: 100vh;
-  background: #f6f2ea;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
+body {
+  margin: 0;
+  background: #f2f2f2;
 }
 
-.logo {
-  font-size: 36px;
-  color: #0c1e4a;
-  letter-spacing: 1px;
-}
-
-.logo span {
-  font-weight: bold;
-  position: relative;
-}
-
-.tagline {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #0c1e4a;
+/* กล่องกลาง */
+.login-container {
+  width: 420px;
+  margin: 60px auto;
+  background: white;
+  padding: 50px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 600px;
 }
 
-.login-box {
-  margin-top: 50px;
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-}
-
-.login-box label {
-  font-size: 12px;
-  color: #0c1e4a;
-  margin-bottom: 4px;
-}
-
-.login-box input[type="text"],
-.login-box input[type="password"] {
-  height: 36px;
-  border-radius: 6px;
-  border: none;
-  background: #d9d7d2;
-  padding: 0 10px;
-  margin-bottom: 15px;
-}
-
-.password-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.forgot {
-  font-size: 11px;
-  color: #0d5eff;
-  text-decoration: none;
-}
-
-.remember-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* ชิดซ้าย */
-  gap: 8px;
-  width: 100%;
-  margin: 10px 0;
+/* ข้อความด้านบน */
+.title {
+  font-size: 28px;
+  font-weight: bold;
   color: #0b1d4a;
+  margin-bottom: 20px;
 }
 
-.remember-container input {
-  width: 16px;
-  height: 16px;
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40px;
 }
 
+/* ฟอร์ม */
+.login-form {
+  text-align: left;
+}
 
-.login-btn {
-  height: 38px;
+.login-form label {
+  display: block;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+/* input */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
-  background: #0c1e4a;
+  background: #3b3b3b;
   color: white;
+  font-size: 14px;
+}
+
+.login-form input::placeholder {
+  color: #ccc;
+}
+
+/* forgot password */
+.forgot {
+  float: right;
+  font-size: 12px;
+  color: #0a5bd8;
   cursor: pointer;
 }
 
-.login-btn:hover {
-  background: #142d6b;
+/* remember me */
+.options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #333;
+}
+
+.remember input {
+  width: 14px;
+  height: 14px;
+}
+
+/* error */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* ปุ่ม login */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #0b1d4a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover {
+  background: #132c73;
+}
+
+/* signup */
 .signup-text {
-  margin-top: 30px;
   font-size: 14px;
-  color: #0c1e4a;
+  color: #333;
 }
 
 .signup-text a {
-  color: #0d5eff;
-  font-weight: bold;
+  color: #0a5bd8;
   text-decoration: none;
-}
-
-.footer-logo {
-  margin-top: 30px;
-  font-size: 24px;
+  font-weight: bold;
 }
