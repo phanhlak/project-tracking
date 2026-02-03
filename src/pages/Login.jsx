@@ -23,10 +23,11 @@ export default function Login() {
         </div>
         <input type="password" />
 
-        <div className="remember">
-          <input type="checkbox" />
-          <span>remember me</span>
-        </div>
+        <div className="remember-container">
+  <input type="checkbox" id="remember" />
+  <label htmlFor="remember">remember me</label>
+</div>
+
 
         <button className="login-btn">Login</button>
       </div>

@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.css";
 
-// 🔐 Invitation Code (สำหรับ Officer)
 const INVITE_CODE = "01";
 
 function Signup() {
   const navigate = useNavigate();
 
-  // state หลัก
   const [roleType, setRoleType] = useState("Student");
   const [showInvite, setShowInvite] = useState(false);
   const [inviteInput, setInviteInput] = useState("");
@@ -25,7 +23,7 @@ function Signup() {
     photo: null,
   });
 
-  // 🔁 เลือก Student
+  // 👉 เลือก Student
   const selectStudent = () => {
     setRoleType("Student");
     setInvitePassed(true);
@@ -34,7 +32,7 @@ function Signup() {
     setForm({ ...form, role: "Student" });
   };
 
-  // 🔁 เลือก Officer
+  // 👉 เลือก Officer → เปิด Lock
   const selectOfficer = () => {
     setRoleType("Officer");
     setInvitePassed(false);
@@ -43,7 +41,7 @@ function Signup() {
     setForm({ ...form, role: "Officer" });
   };
 
-  // 🔐 ตรวจ Invitation Code
+  // 👉 ตรวจ Invitation Code
   const checkInviteCode = () => {
     if (inviteInput === INVITE_CODE) {
       setInvitePassed(true);
@@ -54,36 +52,29 @@ function Signup() {
     }
   };
 
-  // ✏️ เปลี่ยนค่า input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  // 📷 อัปโหลดรูป
   const handlePhoto = (e) => {
     setForm({ ...form, photo: e.target.files[0] });
   };
 
-  // ✅ สมัคร
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // เก็บข้อมูล (demo)
     localStorage.setItem("user", JSON.stringify(form));
-
     alert("สมัครสมาชิกสำเร็จ");
-    navigate("/"); // กลับหน้า Login
+    navigate("/");
   };
 
   return (
     <div className="signup-layout">
       {/* LEFT */}
-      <div className="signup-left">
+      <div className={`signup-left ${showInvite ? "blur" : ""}`}>
         <h2>SIGN UP</h2>
-        <p>Student / Officer</p>
+        <p className="sub">Student / Officer</p>
 
-        {/* เลือก Role */}
         <div className="role-toggle">
           <button
             type="button"
@@ -101,7 +92,6 @@ function Signup() {
           </button>
         </div>
 
-        {/* ฟอร์ม */}
         <form
           onSubmit={handleSubmit}
           className={!invitePassed ? "disabled" : ""}
@@ -148,7 +138,6 @@ function Signup() {
             required
           />
 
-          {/* Upload รูป */}
           <label className="upload-box">
             Front-facing photo
             <input
@@ -160,16 +149,16 @@ function Signup() {
             />
           </label>
 
-          {/* ปุ่ม */}
-          <div className="actions">
+          <div className="signup-buttons">
             <button
               type="button"
-              className="back"
+              className="btn back-btn"
               onClick={() => navigate("/")}
             >
               Back
             </button>
-            <button type="submit" className="signup">
+
+            <button type="submit" className="btn signup-btn">
               Sign up
             </button>
           </div>
@@ -177,7 +166,7 @@ function Signup() {
       </div>
 
       {/* RIGHT */}
-      <div className="signup-right">
+      <div className={`signup-right ${showInvite ? "blur" : ""}`}>
         <h1>
           PROJECT <span>TRACK📍NG</span>
           <br />
@@ -185,12 +174,12 @@ function Signup() {
         </h1>
       </div>
 
-      {/* 🔒 Popup Invitation Code */}
+      {/* 🔒 Overlay Invitation Code */}
       {showInvite && (
         <div className="overlay">
           <div className="invite-box">
-            <div className="lock">🔒</div>
-            <p>PLEASE ENTER INVITATION CODE</p>
+            <div className="lock-icon">🔒</div>
+            <p className="invite-title">PLEASE ENTER INVITATION CODE</p>
 
             <input
               placeholder="Invitation Code"
@@ -199,8 +188,19 @@ function Signup() {
             />
 
             <div className="actions">
-              <button onClick={() => setShowInvite(false)}>Back</button>
-              <button onClick={checkInviteCode}>Enter</button>
+              <button
+                className="btn back-btn"
+                onClick={() => {
+                  setShowInvite(false);
+                  setRoleType("Student");
+                  setInvitePassed(true);
+                }}
+              >
+                Back
+              </button>
+              <button className="btn signup-btn" onClick={checkInviteCode}>
+                Enter
+              </button>
             </div>
 
             {error && <p className="error">{error}</p>}

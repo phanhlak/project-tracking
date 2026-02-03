@@ -66,14 +66,21 @@
   text-decoration: none;
 }
 
-.remember {
+.remember-container {
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* ชิดซ้าย */
   gap: 8px;
-  font-size: 13px;
-  color: #0c1e4a;
-  margin-bottom: 20px;
+  width: 100%;
+  margin: 10px 0;
+  color: #0b1d4a;
 }
+
+.remember-container input {
+  width: 16px;
+  height: 16px;
+}
+
 
 .login-btn {
   height: 38px;
